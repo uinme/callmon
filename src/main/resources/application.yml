@@ -1,0 +1,40 @@
+spring:
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: admin 
+    password: admin
+    virtual-host: datacoll
+    template:
+      exchange: CALL_MONITOR
+      routing-key: CALL_MONITOR
+      retry:
+        enabled: true
+        initial-interval: 1000ms
+        max-attempts: 3
+        max-interval: 10000ms
+        multiplier: 1
+
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: postgres
+
+mybatis:
+  type-aliases-package: com.uinme.mes.callmonitor
+  configuration:
+    map-underscore-to-camel-case: true
+    default-statement-timeout: 30
+
+callmonitor:
+  input_dir: "C:/Users/uinme/Desktop/integration_data"
+  monitoring_interval: 1000
+  # US-ASCII
+  # ISO-8859-1
+  # UTF-8
+  # UTF-16BE
+  # UTF-16LE
+  # UTF-16
+  charset: "UTF-8"
+  csv_header: false
